@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button Href=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>lista-contatos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="back">
+
+  <ion-fab class="addcont" vertical="bottom" horizontal="end" slot="fixed" edge="true">
+    <ion-fab-button routerLink="/detalhes-lista/ -1">
+      <ion-icon name="person-add-outline"></ion-icon>
+    </ion-fab-button>
+    </ion-fab>
+    <ion-list>
+      <ion-item *ngFor="let dadosContatos of dadosContatos" routerLink= "/detalhes-lista/{{dadosContatos.id}}">
+    <ion-label><ion-icon class="icon6" name="person-circle-outline"></ion-icon>{{dadosContatos.nome}}{{dadosContatos.sobrenome}}</ion-label>
+      </ion-item>
+    </ion-list>
+
+</ion-content>

@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button Href=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>detalhes-lista</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="!modo_exib">
+    <ion-icon class="icon1" name="person-circle-outline"></ion-icon>
+    <br>
+    <ion-label class="name" >Nome</ion-label>
+    <ion-item >
+    <ion-label >{{ dadoSelecionado.nome}}</ion-label>
+    </ion-item>
+    <ion-label class="sobrenome" >sobrenome</ion-label>
+    <ion-item >
+    <ion-label >{{ dadoSelecionado.sobrenome}}</ion-label>
+    </ion-item>
+    <br>
+    <ion-label class="telefone" >telefone: {{ dadoSelecionado.tipotele}}</ion-label>
+    <ion-item>
+    <ion-label >{{ dadoSelecionado.telefone}} </ion-label>
+    </ion-item>
+    <br>
+    <ion-label class="email" >email</ion-label>
+    <ion-item>
+    <ion-label >{{ dadoSelecionado.email}}</ion-label>
+    </ion-item>
+   
+    
+</ion-list>
+
+<ion-button class="button1" *ngIf="!modo_edicao" (click)="iniciar_edicao_list()">alterar contato</ion-button>
+
+<ion-fab class="button2" slot="fixed" edge="true">
+  <ion-fab-button (click)="presentAlert()" color="danger" routerLink="/lista-contatos">
+    <ion-icon name="trash"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<form *ngIf="modo_exib" >
+  <ion-item submit="enviar()">
+  <ion-label class="namee" >Nome:</ion-label>
+  <ion-input [(ngModel)]="dadoSelecionado.nome" maxLength="16" formControlName="nome"></ion-input>
+  </ion-item>
+  <ion-item submit="enviar()">
+  <ion-label class="tel"  >telefone:</ion-label>
+  <ion-input [(ngModel)]="dadoSelecionado.telefone" simpleMask="(99) 99999-9999" formControlName="telefone"></ion-input>
+  </ion-item>
+  <ion-item submit="enviar()">
+    <ion-label class="email1" >email:</ion-label>
+    <ion-input [(ngModel)]="dadoSelecionado.email"  formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item submit="enviar()">
+      <ion-label>Select</ion-label>
+      <ion-select placeholder="tipo de telefone">
+        <ion-select-option type="tipotele" value="celular">celular</ion-select-option>
+        <ion-select-option type="tipotele" value="casa">casa</ion-select-option>
+        <ion-select-option type="tipotele" value="trabalho">trabalho</ion-select-option>
+      </ion-select>
+    </ion-item>
+  <ion-button (click)="finalizar_edicao_list()",type="submit" routerLink="/detalhes-lista">Gravar</ion-button>
+ </form>
+</ion-content>
